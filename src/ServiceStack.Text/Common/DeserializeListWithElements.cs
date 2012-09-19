@@ -129,9 +129,7 @@ namespace ServiceStack.Text.Common
 					do
 					{
 						var itemValue = Serializer.EatTypeValue(value, ref i);
-						to.Add(tryToParseItemsAsPrimitiveTypes 
-                            ? (T) DeserializeType<TSerializer>.ParsePrimitive(itemValue) 
-                            : (T)parseFn(itemValue));
+						to.Add((T)parseFn(itemValue));
 					} while (++i < value.Length);
 				}
 				else

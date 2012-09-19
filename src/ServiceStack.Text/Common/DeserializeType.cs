@@ -54,6 +54,13 @@ namespace ServiceStack.Text.Common
                 return propertyValue;
             }
 
+            if (JsConfig.ConvertObjectTypesIntoStringDictionary) {
+                var dynamicMatch = DeserializeDictionary<TSerializer>.ParseDictionary<string, object>(strType, null, Serializer.UnescapeString, Serializer.UnescapeString);
+                if (dynamicMatch != null && dynamicMatch.Count > 0) {
+                    return dynamicMatch;
+                }
+            }
+
             return Serializer.UnescapeString(strType);
         }
 
